@@ -1,0 +1,47 @@
+# deployment.jinja
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ name }}
+  namespace: {{ namespace }}
+spec:
+  replicas: {{ ReplicaSet }}
+  selector:
+    matchLabels:
+      app: {{ name }}
+  template:
+    metadata:
+      labels:
+        app: {{ name }}
+    spec:
+      containers:
+      - name: {{ name }}
+        image: {{ image }}
+        ports:
+        - containerPort: {{ port }}
+        {%- if secrets %}
+        env:
+        {% for key, value in secrets.items() -%}
+        - name: {{key}}
+          valueFrom:
+            secretKeyRef:
+              name: {{ name }}-secret
+              key: {{ key }}
+        {% endfor -%}
+        {%- endif -%}
+        {%- if configmaps %}
+        envFrom:
+          - configMapRef:
+              name: {{name}}-env
+        {%- endif -%}
+        {%- if volume %}
+        volumeMounts: 
+        - name: {{name}}-volume
+          mountPath: {{volume['ContainerPath']}}
+        {%- endif -%}
+      {%- if volume %}
+      volumes: 
+      - name: {{name}}-volume
+        hostPath:
+          path: {{volume['ServiceLocalPath']}}
+      {%- endif -%}

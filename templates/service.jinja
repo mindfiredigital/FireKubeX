@@ -1,0 +1,16 @@
+# Service.jinja
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ name }}
+  namespace: {{ namespace }}
+  labels:
+    app: {{ name }}
+spec:
+  ports:
+    - port: {{port}}
+      targetPort: {{port}}
+      protocol: TCP
+  selector:
+    app: {{ name }}
+  type: NodePort

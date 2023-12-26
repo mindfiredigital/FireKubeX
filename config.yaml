@@ -5,26 +5,44 @@ service:
     name: mpsetup
     port: 8080
     namespace: Dev
-    ContainerPath: /tmp
-    ServiceLocalPath: /tmp
+    volume:
+      ContainerPath: /tmp
+      ServiceLocalPath: /tmp
     ReplicaSet: 2
     configmaps:
       APP_DEBUG: "true"
       APP_ENV: local
       APP_KEY: base64:1Ykb1MNf9qwdUIUpElWUxReKWr+4iL106Z43SuyqSr0=
+    secrets:
+      username: YWRtaW4=
+      password: YWRtaW4xMjM0
     tags: 
       - core
+    hpa:
+      max_replicas: 5
+      cpu_utilization: 10
+      stabilization_window_seconds: 300
+    depends_on:
+      - mpms1
   mpms1:
     image: mpms1:latest 
     name: mpms1 
     port: 8080
-    namespace:
-    ContainerPath: /tmp
-    ServiceLocalPath: /tmp
+    namespace: Dev
+    volume:
+      ContainerPath: /tmp
+      ServiceLocalPath: /tmp
     ReplicaSet: 3
     configmaps:
       APP_DEBUG: "true"
       APP_ENV: local
       APP_KEY: base64:1Ykb1MNf9qwdUIUpElWUxReKWr+4iL106Z43SuyqSr0=
+    secrets:
+      username: YWRtaW4=
+      password: YWRtaW4xMjM0
+    hpa:
+      max_replicas: 5
+      cpu_utilization: 10
+      stabilization_window_seconds: 300
     tags: 
       - dev

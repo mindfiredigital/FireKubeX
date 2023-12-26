@@ -1,0 +1,10 @@
+# ConfigMap.jinja
+apiVersion: v1
+data:
+  {% for key, value in config_values.items() -%}
+  {{key }}: "{{ value }}"
+  {% endfor %}
+kind: ConfigMap
+metadata:
+  name: {{ name }}-env
+  namespace: {{ namespace }}

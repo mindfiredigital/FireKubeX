@@ -1,0 +1,22 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ name }}-hpa
+  namespace: {{ namespace }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment  
+    name: {{ name }}
+  minReplicas: 1
+  maxReplicas: {{ hpa['max_replicas'] }}  # Maximum number of pods
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ hpa['cpu_utilization'] }}  # Scale up if CPU utilization is above specified percentage
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: {{ hpa['stabilization_window_seconds'] }}  # Set a stabilization window for scale-down
