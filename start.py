@@ -72,7 +72,7 @@ def parse_yaml(file_path, is_core):
     service_directory = './services'
     if not os.path.exists(service_directory):
         os.mkdir(service_directory)
-    existing_directories = [directory for directory in os.listdir('.') if os.path.isdir(directory)]
+    existing_directories = [directory for directory in os.listdir(service_directory) if os.path.isdir(directory)]
 
     for service_name, service_info in services.items():
         if not is_core and ("image" not in service_info or "name" not in service_info or
