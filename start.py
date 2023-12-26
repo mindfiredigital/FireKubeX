@@ -88,24 +88,24 @@ def parse_yaml(file_path, is_core):
         service_info["ReplicaSet"] = replica_set
         #Create directory if not exist
         if name not in existing_directories:
-            os.makedirs(name)
+            os.makedirs(service_directory+'/'+name)
         namespace_check(namespace)
 
         ##Create configmap
         config_values = service_info.get("configmaps", "")
         if config_values:
             configmap_yaml = generate_configmap(service_info,config_values)
-            file_path = (f"{name}/configmap.yml")
+            file_path = (f"services/{name}/configmap.yml")
             generate_file(file_path,content=configmap_yaml)
 
         ##service
         service_yaml = generate_service(service_info)
-        file_path=(f"{name}/service.yaml")
+        file_path=(f"services/{name}/service.yaml")
         generate_file(file_path,content=service_yaml)
         
         ##Deployment
         deployment_yaml = generate_deployment(service_info)
-        file_path = f"{name}/deployment.yml"
+        file_path = f"services/{name}/deployment.yml"
         generate_file(file_path,content=deployment_yaml)
         
         ##Secrets
@@ -114,12 +114,12 @@ def parse_yaml(file_path, is_core):
             value = service_info["secrets"][key]
             encode_base64 = f"echo -n  {value}"
             service_info["secrets"][key] = [os.system(encode_base64)]    
-        file_path = f"{name}/secrets.yml"
+        file_path = f"services/{name}/secrets.yml"
         generate_file(file_path,content=secrets_yaml)
 
         ##HPA
         hpa_yaml = generate_hpa(service_info)
-        file_path = f"{name}/hpa.yml"
+        file_path = f"services/{name}/hpa.yml"
         generate_file(file_path,content=hpa_yaml)
 
 def main():
