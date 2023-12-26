@@ -69,10 +69,11 @@ def parse_yaml(file_path, is_core):
     yaml_string = read_file(file_path)
     parsed_data = yaml.safe_load(yaml_string)
     services = parsed_data.get("service", {})
-    service_directory = './services'
+    service_directory = 'services'
     if not os.path.exists(service_directory):
         os.mkdir(service_directory)
-    existing_directories = [directory for directory in os.listdir(service_directory) if os.path.isdir(directory)]
+    directry = os.listdir(service_directory)
+    existing_directories = [entry for entry in directry if os.path.isdir(os.path.join('services', entry))]
 
     for service_name, service_info in services.items():
         if not is_core and ("image" not in service_info or "name" not in service_info or
