@@ -69,6 +69,9 @@ def parse_yaml(file_path, is_core):
     yaml_string = read_file(file_path)
     parsed_data = yaml.safe_load(yaml_string)
     services = parsed_data.get("service", {})
+    service_directory = './services'
+    if not os.path.exists(service_directory):
+        os.mkdir(service_directory)
     existing_directories = [directory for directory in os.listdir('.') if os.path.isdir(directory)]
 
     for service_name, service_info in services.items():
