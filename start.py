@@ -25,13 +25,13 @@ def generate_file(file_path, content):
 def start_service(name):
     print(f"###############{name}##############")
     print("------------------in--------------------")
-    kubectl_apply_cmd = f"kubectl apply -f {name}"
+    kubectl_apply_cmd = f"kubectl apply -f services/{name}"
     os.system(kubectl_apply_cmd)
 
 def stop_service(name):
     print(f"###############{name}##############")
     # Use kubectl to delete the deployment and service
-    kubectl_apply_cmd = f"kubectl delete -f {name}"
+    kubectl_apply_cmd = f"kubectl delete -f services/{name}"
     os.system(kubectl_apply_cmd)
     
 def generate_deployment(service_info):
