@@ -130,7 +130,7 @@ def main():
     parser.add_argument("--core", action="store_true", help="Parse and apply services from core.yaml")
     parser.add_argument("--harbor", action="store_true", help="setup harbor repository")
     args = parser.parse_args()
-    os.system('pip install jinja2')
+    #os.system('pip install jinja2')
     if args.core:
         # Use a separate variable for the core configuration file
         core_yaml_path = './core.yaml'
