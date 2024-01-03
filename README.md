@@ -80,6 +80,12 @@ python3 start.py --stop <service_name>
 python3 start.py --stop all
 ```
 
+**For setting up Harbor image repository and components**
+
+```shell
+python3 start.py --harbor
+```
+
 
 ## Notes
 - The Dockerfile for each application must be present in the source code repository.
