@@ -1,5 +1,5 @@
-import os, yaml, argparse, subprocess
-from jinja2 import Template 
+import os, yaml, argparse, subprocess, sys
+from jinja2 import Template
 
 def read_file(file_path):
     file = open(file_path,'r')
@@ -92,6 +92,16 @@ def parse_yaml(file_path, is_core):
             os.makedirs(service_directory+'/'+name)
         namespace_check(namespace)
 
+        ##Deployment
+        deployment_yaml = generate_deployment(service_info)
+        file_path = f"services/{name}/deployment.yml"
+        generate_file(file_path,content=deployment_yaml)
+
+        ##service
+        service_yaml = generate_service(service_info)
+        file_path=(f"services/{name}/service.yaml")
+        generate_file(file_path,content=service_yaml)
+        
         ##Create configmap
         config_values = service_info.get("configmaps", "")
         if config_values:
@@ -99,15 +109,9 @@ def parse_yaml(file_path, is_core):
             file_path = (f"services/{name}/configmap.yml")
             generate_file(file_path,content=configmap_yaml)
 
-        ##service
-        service_yaml = generate_service(service_info)
-        file_path=(f"services/{name}/service.yaml")
-        generate_file(file_path,content=service_yaml)
+
         
-        ##Deployment
-        deployment_yaml = generate_deployment(service_info)
-        file_path = f"services/{name}/deployment.yml"
-        generate_file(file_path,content=deployment_yaml)
+
         
         ##Secrets
         secrets_yaml = generate_secrets(service_info)
@@ -130,7 +134,6 @@ def main():
     parser.add_argument("--core", action="store_true", help="Parse and apply services from core.yaml")
     parser.add_argument("--harbor", action="store_true", help="setup harbor repository")
     args = parser.parse_args()
-    #os.system('pip install jinja2')
     if args.core:
         # Use a separate variable for the core configuration file
         core_yaml_path = './core.yaml'
