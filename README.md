@@ -1,8 +1,42 @@
+# Kubernetes Resource Generator
+
+This Python application dynamically generates Kubernetes resource files (Deployment, ConfigMap, etc.) based on the configuration provided in a YAML file. It utilizes Jinja templates to streamline the resource creation process.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Examples](#examples)
+
+## Overview
+
+The `start.py` script reads the configuration from the `config.yaml` file and generates Kubernetes resource files for each specified service. With this script, developers can deploy their applications without requiring in-depth knowledge of Kubernetes.
+
+## Requirements
+
+- Python 3.x
+- Jinja2 library (`pip install Jinja2`)
+- kubectl installed and configured for the target Kubernetes cluster
+
+- [X] **Python 3.X**
+- [X] **`kubectl` command-line**(kubectl tool installed and configured to work with your Kubernetes cluster)
+- [X] **Docker**
+- [X] **Dockerfiles**(for the applications you want to deploy)
+
+
+## Usage
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/yourusername/kubernetes-resource-generator.git
+   cd kubernetes-resource-generator
+
+
 # Kubernetes Deployment Script Documentation
 
-## Introduction
-
-This documentation provides an overview of a Python script that simplifies the process of deploying applications to a Kubernetes cluster. With this script, developers can deploy their applications without requiring in-depth knowledge of Kubernetes. The script takes a configuration file (`config.yaml`) as input, generates Kubernetes resources (Deployment, Service, ConfigMap, Secrets, HPA), and deploys the application to the cluster.
 
 ## Prerequisites
 
