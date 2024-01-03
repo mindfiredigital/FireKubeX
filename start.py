@@ -109,23 +109,23 @@ def parse_yaml(file_path, is_core):
             file_path = (f"services/{name}/configmap.yml")
             generate_file(file_path,content=configmap_yaml)
 
-
-        
-
-        
         ##Secrets
-        secrets_yaml = generate_secrets(service_info)
-        for key in service_info["secrets"].keys():
-            value = service_info["secrets"][key]
-            encode_base64 = f"echo -n  {value}"
-            service_info["secrets"][key] = [os.system(encode_base64)]    
-        file_path = f"services/{name}/secrets.yml"
-        generate_file(file_path,content=secrets_yaml)
+        secrets = service_info.get("secrets", "")
+        if secrets:
+          secrets_yaml = generate_secrets(service_info)
+          for key in service_info["secrets"].keys():
+              value = service_info["secrets"][key]
+              encode_base64 = f"echo -n  {value}"
+              service_info["secrets"][key] = [os.system(encode_base64)]
+          file_path = f"services/{name}/secrets.yml"
+          generate_file(file_path,content=secrets_yaml)
 
         ##HPA
-        hpa_yaml = generate_hpa(service_info)
-        file_path = f"services/{name}/hpa.yml"
-        generate_file(file_path,content=hpa_yaml)
+        hpa = service_info.get("hpa", "")
+        if hpa:
+            hpa_yaml = generate_hpa(service_info)
+            file_path = f"services/{name}/hpa.yml"
+            generate_file(file_path,content=hpa_yaml)
 
 def main():
     parser = argparse.ArgumentParser(description="Generate Kubernetes resources.")
