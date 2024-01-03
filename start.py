@@ -165,7 +165,8 @@ def main():
         if args.harbor:
            service = 'harbor'
            namespace_check(service)
-           start_service(service)
+           os.system("kubectl apply -f harbor")
+
  
 if __name__ == "__main__":
     main()
