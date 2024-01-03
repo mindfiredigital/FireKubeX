@@ -167,7 +167,6 @@ def main():
            namespace_check(service)
            os.system("kubectl apply -f harbor")
 
- 
 if __name__ == "__main__":
     main()
 

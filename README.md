@@ -47,10 +47,6 @@ For core services, you can use a separate `core.yaml` file with the same structu
 
 The script provides several command-line options:
 
-- `--dev`: Use this option to deploy applications in development mode with a replica set of 1.
-
-- `--prod`: Use this option to deploy applications with the replica set specified in the `config.yaml` file.
-
 - `--start <name>`: Start a specific service by providing its name. You can also use `--start all` to start all services.
 
 - `--stop <name>`: Stop a specific service by providing its name.
