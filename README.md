@@ -18,7 +18,7 @@ The `start.py` script reads the configuration from the `config.yaml` file and ge
 
 - [X] **Python 3.X**
 - [X] **kubectl installed and configured for the target Kubernetes cluster**
-- [X] **Dockerfiles**(for the applications you want to deploy)
+- [X] **Dockerfiles** (for the applications you want to deploy)
 
 
 ## Usage
@@ -26,21 +26,9 @@ The `start.py` script reads the configuration from the `config.yaml` file and ge
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/kubernetes-resource-generator.git
-   cd kubernetes-resource-generator
+   git clone https://github.com/mindfiredigital/FireKubeX.git
+   cd FireKubeX
 
-
-# Kubernetes Deployment Script Documentation
-
-
-## Prerequisites
-
-The list of prerequisites are not quite long but yes we do have some prerequisites.
-
-- [X] **Python 3.X**
-- [X] **`kubectl` command-line**(kubectl tool installed and configured to work with your Kubernetes cluster)
-- [X] **Docker**
-- [X] **Dockerfiles**(for the applications you want to deploy)
 
 ## Configuration
 
