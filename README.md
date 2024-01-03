@@ -6,11 +6,12 @@ This documentation provides an overview of a Python script that simplifies the p
 
 ## Prerequisites
 
-Before using this script, ensure you have the following prerequisites:
+The list of prerequisites are not quite long but yes we do have some prerequisites.
 
-- Python 3.x installed
-- `kubectl` command-line tool installed and configured to work with your Kubernetes cluster
-- Dockerfiles for the applications you want to deploy
+- [X] **Python 3.X**
+- [X] **`kubectl` command-line**(kubectl tool installed and configured to work with your Kubernetes cluster)
+- [X] **Docker**
+- [X] **Dockerfiles**(for the applications you want to deploy)
 
 ## Configuration
 
