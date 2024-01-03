@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This documentation provides an overview of a Python script that simplifies the process of deploying applications to a Kubernetes cluster. With this script, developers can deploy their applications without requiring in-depth knowledge of Kubernetes. The script takes a configuration file (`config.yaml`) as input, generates Kubernetes resources (Deployment, Service, ConfigMap), and deploys the application to the cluster.
+This documentation provides an overview of a Python script that simplifies the process of deploying applications to a Kubernetes cluster. With this script, developers can deploy their applications without requiring in-depth knowledge of Kubernetes. The script takes a configuration file (`config.yaml`) as input, generates Kubernetes resources (Deployment, Service, ConfigMap, Secrets, HPA), and deploys the application to the cluster.
 
 ## Prerequisites
 
