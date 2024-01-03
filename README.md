@@ -18,7 +18,6 @@ The `start.py` script reads the configuration from the `config.yaml` file and ge
 
 - [X] **Python 3.X**
 - [X] **kubectl installed and configured for the target Kubernetes cluster**
-- [X] **Docker**
 - [X] **Dockerfiles**(for the applications you want to deploy)
 
 
