@@ -16,12 +16,8 @@ The `start.py` script reads the configuration from the `config.yaml` file and ge
 
 ## Requirements
 
-- Python 3.x
-- Jinja2 library (`pip install Jinja2`)
-- kubectl installed and configured for the target Kubernetes cluster
-
 - [X] **Python 3.X**
-- [X] **`kubectl` command-line**(kubectl tool installed and configured to work with your Kubernetes cluster)
+- [X] **kubectl installed and configured for the target Kubernetes cluster**
 - [X] **Docker**
 - [X] **Dockerfiles**(for the applications you want to deploy)
 
