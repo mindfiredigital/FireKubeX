@@ -53,18 +53,33 @@ The script provides several command-line options:
 
 - `--core`: Use this option to parse and apply services from `core.yaml`.
 
-## Deployment Workflow
+## How to Run
 
-1. Run the script with the desired options. For example, to start a specific service, use the `--start` option with the service name.
+Running this script is pretty straight forward.
 
-   ```bash
-   python start.py --start <service_name>
+**For starting a specific service**
 
-## Example
-Suppose you have a config.yaml file with the configuration for your application. To deploy the application in development mode, use the following command:
+```shell
+python3 start.py --start <service_name>
+```
 
-    ```bash
-    python start.py --dev
+**For starting all services**
+
+```shell
+python3 start.py --start all
+```
+**For Deleting a specific service and components**
+
+```shell
+python3 start.py --stop <service_name>
+```
+
+**For Deleting all service and components**
+
+```shell
+python3 start.py --stop all
+```
+
 
 ## Notes
 - The Dockerfile for each application must be present in the source code repository.
