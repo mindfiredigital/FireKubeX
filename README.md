@@ -132,10 +132,6 @@ service:
 
   - `tags`: Tags or labels for the application (optional).
 
-### `core.yaml`
-
-For core services, you can use a separate `core.yaml` file with the same structure as `config.yaml`. This allows you to configure core services separately.
-
 ## Usage
 
 The script provides several command-line options:
@@ -144,7 +140,6 @@ The script provides several command-line options:
 
 - `--stop <name>`: Stop a specific service by providing its name.
 
-- `--core`: Use this option to parse and apply services from `core.yaml`.
 
 ## Examples
 
