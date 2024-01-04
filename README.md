@@ -132,6 +132,9 @@ service:
 
   - `tags`: Tags or labels for the application (optional).
 
+  - `namespace`: Separation of app deployment in differnet env like dev, prod,qa  (optional).
+
+
 ## Usage
 
 The script provides several command-line options:
