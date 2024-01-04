@@ -1,4 +1,4 @@
-import os, yaml, argparse, subprocess, sys
+import os, yaml, argparse, subprocess, sys, base64
 from jinja2 import Template
 
 def read_file(file_path):
@@ -112,11 +112,12 @@ def parse_yaml(file_path, is_core):
         ##Secrets
         secrets = service_info.get("secrets", "")
         if secrets:
-          secrets_yaml = generate_secrets(service_info)
           for key in service_info["secrets"].keys():
               value = service_info["secrets"][key]
-              encode_base64 = f"echo -n  {value}"
-              service_info["secrets"][key] = [os.system(encode_base64)]
+              byte_data = value.encode('utf-8')
+              value = base64.b64encode(byte_data)
+              service_info["secrets"][key] = value.decode()
+          secrets_yaml = generate_secrets(service_info)
           file_path = f"services/{name}/secrets.yml"
           generate_file(file_path,content=secrets_yaml)
 
