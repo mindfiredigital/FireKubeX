@@ -23,11 +23,19 @@ The `start.py` script reads the configuration from the `config.yaml` file and ge
 
 ## Usage
 
-1. **Clone the repository:**
+**Clone the repository:**
 
    ```bash
    git clone https://github.com/mindfiredigital/FireKubeX.git
    cd FireKubeX
+   ```
+
+**Install the required Python dependencies:**
+
+```bash pip install -r requirements.txt 
+
+```
+
 
 
 ## Configuration
