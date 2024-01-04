@@ -187,7 +187,7 @@ For more information on available options, run:
 
 ```shell
 python start.py --help
-```
+  q```
 
 ## Notes
 - The Dockerfile for each application must be present in the source code repository.
