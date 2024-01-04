@@ -69,8 +69,8 @@ service:
       APP_ENV: local
       APP_KEY: base64:1Ykb1MNf9qwdUIUpElWUxReKWr+4iL106Z43SuyqSr0=
     secrets:
-      username: YWRtaW4=
-      password: YWRtaW4xMjM0
+      username: admin
+      password: admin1234
     tags: 
       - core
     hpa:
@@ -93,8 +93,8 @@ service:
       APP_ENV: local
       APP_KEY: base64:1Ykb1MNf9qwdUIUpElWUxReKWr+4iL106Z43SuyqSr0=
     secrets:
-      username: YWRtaW4=
-      password: YWRtaW4xMjM0
+      username: admin
+      password: admin1234
     hpa:
       max_replicas: 5
       cpu_utilization: 10
@@ -123,6 +123,12 @@ service:
   - `ReplicaSet`: The number of replicas you want for the application (optional).
 
   - `configmaps`: Configuration settings for the application. You can specify environment variables and their values here.
+
+  - `secrets`: Configuration settings for the application. You can specify environment variables and their values here.
+
+  - `hpa`: Horizontal Pod Autoscaler is a type of autoscaler that can increase or decrease the number of pods in a Deployment, usually in response to CPU utilization patterns (optional).
+
+  - `depends_on`: The services which depends on some other  service like db (optional).
 
   - `tags`: Tags or labels for the application (optional).
 
