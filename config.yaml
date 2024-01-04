@@ -14,8 +14,8 @@ service:
       APP_ENV: local
       APP_KEY: base64:1Ykb1MNf9qwdUIUpElWUxReKWr+4iL106Z43SuyqSr0=
     secrets:
-      username: YWRtaW4=
-      password: YWRtaW4xMjM0
+      username: admin
+      password: admin1234
     tags: 
       - core
     hpa:
@@ -38,8 +38,8 @@ service:
       APP_ENV: local
       APP_KEY: base64:1Ykb1MNf9qwdUIUpElWUxReKWr+4iL106Z43SuyqSr0=
     secrets:
-      username: YWRtaW4=
-      password: YWRtaW4xMjM0
+      username: admin
+      password: admin1234
     hpa:
       max_replicas: 5
       cpu_utilization: 10
