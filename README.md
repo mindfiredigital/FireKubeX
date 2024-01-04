@@ -104,9 +104,7 @@ service:
 ```
 
 
-### `config.yaml`
-
-The `config.yaml` file is the main configuration file for the script. You should provide the following information for each application you want to deploy:
+#### `config.yaml` file configuration 
 
 - `version`: The script version (currently 3.2).
 
@@ -142,9 +140,20 @@ The script provides several command-line options:
 
 - `--core`: Use this option to parse and apply services from `core.yaml`.
 
-## How to Run
+## Examples
 
 Running this script is pretty straight forward.
+
+Generate Kubernetes resources based on the provided config.yaml:
+
+```shell
+python3 start.py
+```
+Generate resources for a specific service:
+
+```shell
+python start.py --start <service_name>
+```
 
 **For starting a specific service**
 
@@ -174,7 +183,11 @@ python3 start.py --stop all
 ```shell
 python3 start.py --harbor
 ```
+For more information on available options, run:
 
+```shell
+python start.py --help
+```
 
 ## Notes
 - The Dockerfile for each application must be present in the source code repository.
