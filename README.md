@@ -48,6 +48,62 @@ python3 start.py
 
 ## Configuration
 
+The config.yaml file contains configurations for each service, specifying details such as image, port, namespace, volume, replicas, configmaps, secrets, tags, and more. Ensure all required fields are correctly filled.
+
+Sample config.yaml:
+``` yaml
+# YAML
+version: 3.2
+service:
+  mpsetup:
+    image: nginx:latest 
+    name: mpsetup
+    port: 8080
+    namespace: Dev
+    volume:
+      ContainerPath: /tmp
+      ServiceLocalPath: /tmp
+    ReplicaSet: 2
+    configmaps:
+      APP_DEBUG: "true"
+      APP_ENV: local
+      APP_KEY: base64:1Ykb1MNf9qwdUIUpElWUxReKWr+4iL106Z43SuyqSr0=
+    secrets:
+      username: YWRtaW4=
+      password: YWRtaW4xMjM0
+    tags: 
+      - core
+    hpa:
+      max_replicas: 5
+      cpu_utilization: 10
+      stabilization_window_seconds: 300
+    depends_on:
+      - mpms1
+  mpms1:
+    image: mpms1:latest 
+    name: mpms1 
+    port: 8080
+    namespace: Dev
+    volume:
+      ContainerPath: /tmp
+      ServiceLocalPath: /tmp
+    ReplicaSet: 3
+    configmaps:
+      APP_DEBUG: "true"
+      APP_ENV: local
+      APP_KEY: base64:1Ykb1MNf9qwdUIUpElWUxReKWr+4iL106Z43SuyqSr0=
+    secrets:
+      username: YWRtaW4=
+      password: YWRtaW4xMjM0
+    hpa:
+      max_replicas: 5
+      cpu_utilization: 10
+      stabilization_window_seconds: 300
+    tags: 
+      - dev
+```
+
+
 ### `config.yaml`
 
 The `config.yaml` file is the main configuration file for the script. You should provide the following information for each application you want to deploy:
