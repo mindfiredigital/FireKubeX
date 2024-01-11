@@ -18,6 +18,21 @@ def namespace_check(namespace):
     else:
         print(f"Namespace '{namespace}' is already available.")
 
+def deployment_status(deployment_name, namespace):
+    print(f"###############status of {deployment_name} service ##############")
+    namespace = namespace.lower()
+    os.system('sleep 15')
+    deployment_status = f"kubectl get deployment {deployment_name} -n {namespace} | grep {deployment_name}"
+    deployment_status= deployment_status + " | awk '{print $4}'"
+    status=subprocess.check_output(deployment_status,shell=True)
+    status = int(status.decode("utf-8"))
+    if status==1:
+        print(f"{deployment_name} Service is up and running")
+        return 1
+    else:
+        print(f"Please check the {deployment_name} service")
+        return 0
+    
 def generate_file(file_path, content):
     with open(file_path, "w") as file:
         file.write(content)
@@ -145,23 +160,38 @@ def main():
         parse_yaml(file_path, is_core=False )
 
         # Check if the --start argument is provided and start the specified service
-        if args.start == "all":
+        if args.start:
+            if args.start == "all":
+                services = yaml.safe_load(open(file_path, 'r'))["service"]
+                for service_name in services.keys():
+                    if "depends_on" in services[service_name]:
+                        depends_on_serivce = services[service_name]['depends_on']
+                        start_service(depends_on_serivce)
+                        status = deployment_status(depends_on_serivce,services[service_name]['namespace'])
+                        if status == 1:
+                            start_service(service_name)
+                            status = deployment_status(service_name,services[service_name]['namespace'])
+                    else:
+                        start_service(service_name)
+            else:
+                start_service(args.start)
+
             # Start all services
-            services = yaml.safe_load(open(file_path, 'r'))["service"]
-            dependent_services=[]
-            for service_name in services.keys():
-                if "depends_on" in services[service_name]:
-                    dependent_services.append(services[service_name]['name'])
-                    service_names = services[service_name]['depends_on']
-                    for service in service_names:
-                        start_service(service)                
-                else:
-                    os.system('sleep 15')
-                    for service in dependent_services:
-                        start_service(service)
-        else:
-            # Start a specific service
-            start_service(args.start)
+        #    services = yaml.safe_load(open(file_path, 'r'))["service"]
+        #    dependent_services=[]
+        #    for service_name in services.keys():
+        #        if "depends_on" in services[service_name]:
+        #            print("if depends_on----")
+        #            dependent_services.append(services[service_name]['name'])
+        #            service_names = services[service_name]['depends_on']
+        #            for service in service_names:
+        #                start_service(service)                
+        #        else:
+        #            print(args.start)
+        #            start_service(args.start)
+                    #print("else ---")
+                    #for service in dependent_services:
+                    #    start_service(service)            
         # Check if the --stop argument is provided and stop the specified service
         if args.stop:
             stop_service(args.stop)
