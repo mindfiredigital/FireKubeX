@@ -22,8 +22,7 @@ service:
       max_replicas: 5
       cpu_utilization: 10
       stabilization_window_seconds: 300
-    depends_on:
-      - mpms1
+    depends_on: mpms1
   mpms1:
     image: mpms1:latest 
     name: mpms1 
