@@ -92,7 +92,7 @@ def parse_yaml(file_path, is_core):
 
     for service_name, service_info in services.items():
         if not is_core and ("image" not in service_info or "name" not in service_info or
-                            "port" not in service_info or "volume" not in service_info):
+                            "port" not in service_info):
             print(f"Skipping '{service_name}' - Missing mandatory fields 'image', 'name', 'port', 'Volume''")
             continue
         name = service_info.get("name", "")

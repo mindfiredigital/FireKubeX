@@ -1,3 +1,4 @@
 services/*
 env/*
 todo
+config/*
